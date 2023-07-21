@@ -59,5 +59,14 @@ export default async function loader(content) {
     return;
   }
 
-  callback(null, String(file));
+  let valueToEmit;
+
+  try {
+    valueToEmit = JSON.stringify(file);
+  } catch (error) {
+    callback(error);
+    return;
+  } 
+
+  callback(null, valueToEmit);
 }
